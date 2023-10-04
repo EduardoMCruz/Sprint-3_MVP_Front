@@ -2,7 +2,7 @@
   --------------------------------------------------------------------------------------
 */
 const getList = async () => {
-  let url = 'http://127.0.0.1:5000/aparelhos';
+  let url = 'http://127.0.0.1:5000/agendamentos';
   fetch(url, {
     method: 'get',
   })
@@ -10,7 +10,7 @@ const getList = async () => {
     .then((data) => {
       console.log(data);
       document.getElementById("myTableBody").innerHTML = "";
-      data.aparelhos.forEach(item => insertList(item.codigo, item.nome, item.telefone, item.categoria, item.especialida, item.c_data, item.c_hora_fio))
+      data.agendamentos.forEach(item => insertList(item.codigo, item.nome, item.telefone, item.categoria, item.especialidade, item.c_data, item.c_hora))
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -33,9 +33,9 @@ const postItem = async (inputCode, inputName, inputC_number, inputC_category, in
   formData.append('telefone', inputC_number);
   formData.append('categoria', inputC_category);
   if (inputRoom != "") formData.append('especialidade', inputRoom);
-  if (inputC_date != "") formData.append('c_data', inputC_date);
-  if (inputC_time != "") formData.append('c_hora_fio', inputC_time);
-  let url = 'http://127.0.0.1:5000/aparelho';
+  if (inputC_date != "") formData.append('c_date', inputC_date);
+  if (inputC_time != "") formData.append('c_hora', inputC_time);
+  let url = 'http://127.0.0.1:5000/agendamento';
   fetch(url, {
     method: 'post',
     body: formData
@@ -44,7 +44,7 @@ const postItem = async (inputCode, inputName, inputC_number, inputC_category, in
     console.log("response: ",response.json());
     console.log("status:",response.ok);
     if (response.ok) {
-      alert("Aparelho adicionado com sucesso!");
+      alert("Agendamento adicionado com sucesso!");
       closeIncludeModal();
       getList();
     }
@@ -79,9 +79,9 @@ const removeElement = () => {
     lixeira[i].onclick = function () {
       let div = this.parentElement.parentElement;
       const nomeItem = div.getElementsByTagName('td')[0].innerHTML
-      if (confirm("Você tem certeza que deseja excluir o aparelho?")) {
+      if (confirm("Você tem certeza que deseja excluir o agendamento?")) {
         deleteItem(nomeItem)
-        alert("Aparelho removido com sucesso!")
+        alert("Agendamento removido com sucesso!")
         getList()
       }
     }
@@ -93,7 +93,7 @@ const removeElement = () => {
 */
 const deleteItem = (item) => {
   console.log(item)
-  let url = 'http://127.0.0.1:5000/aparelho?codigo=' + item;
+  let url = 'http://127.0.0.1:5000/agendamento?codigo=' + item;
   fetch(url, {
     method: 'delete'
   })
@@ -136,7 +136,7 @@ const getElement = () => {
 */
 const getItem = (item) => {
   console.log(item)
-  let url = 'http://127.0.0.1:5000/aparelho?codigo=' + item;
+  let url = 'http://127.0.0.1:5000/agendamento?codigo=' + item;
   fetch(url, {
     method: 'get'
   })
@@ -149,14 +149,14 @@ const getItem = (item) => {
     inputNome.value = data.nome; 
     let inputTelefone = document.getElementById("editC_number");
     inputTelefone.value = data.telefone; 
-    let inputC_categorym = document.getElementById("editVoltage");
-    inputC_categorym.value = data.voltagem;  
+    let inputCategoria = document.getElementById("editC_category");
+    inputCategoria.value = data.categoria;  
     let inputEspecialidade = document.getElementById("editRoom");
     inputEspecialidade.value = data.especialidade;
     let inputC_data = document.getElementById("editC_date");
     inputC_data.value = data.c_data; 
     let inputC_hora = document.getElementById("editC_time");
-    inputC_hora.value = data.c_hora_fio; 
+    inputC_hora.value = data.c_hora; 
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -171,11 +171,11 @@ async function putItem(inputCode, inputName, inputC_number, inputC_category, inp
   const formData = new FormData();
   formData.append('nome', inputName);
   formData.append('telefone', inputC_number);
-  formData.append('voltagem', inputC_category);
+  formData.append('categoria', inputC_category);
   if (inputRoom != "") formData.append('especialidade', inputRoom);
   if (inputC_date != "") formData.append('c_data', inputC_date);
-  if (inputC_time != "") formData.append('c_hora_fio', inputC_time);
-  let url = 'http://127.0.0.1:5000/aparelho?codigo=' + inputCode;
+  if (inputC_time != "") formData.append('c_hora', inputC_time);
+  let url = 'http://127.0.0.1:5000/agendamento?codigo=' + inputCode;
   fetch(url, {
     method: 'put',
     body: formData
@@ -184,7 +184,7 @@ async function putItem(inputCode, inputName, inputC_number, inputC_category, inp
     console.log("response: ", response.json());
     console.log("status:", response.ok);
     if (response.ok) {
-      alert("Aparelho editado com sucesso!");
+      alert("Agendamento editado com sucesso!");
       closeModal();
       getList();
     }
@@ -201,11 +201,11 @@ const editItem = () => {
   let inputCode = document.getElementById("editCode");
   let inputName = document.getElementById("editName");
   let inputC_number = document.getElementById("editC_number");
-  let inputC_category = document.getElementById("editVoltage");
+  let inputC_category = document.getElementById("editC_category");
   let inputRoom = document.getElementById("editRoom").value;
   let inputC_date = document.getElementById("editC_date").value;
   let inputC_time = document.getElementById("editC_time").value;   
-  let camposObrigatorios = [editCode, editName, editC_number, editVoltage];
+  let camposObrigatorios = [editCode, editName, editC_number, editC_category];
   let error = false;
   for (let i = 0; i < camposObrigatorios.length; i++) {
     let campoObrigatorio = camposObrigatorios[i]
@@ -228,7 +228,7 @@ const editItem = () => {
 
 /*
     --------------------------------------------------------------------------------------
-    Função para adicionar um novo aparelho 
+    Função para adicionar um novo agendamento 
     --------------------------------------------------------------------------------------
 */
 
@@ -236,7 +236,7 @@ const newItem = () => {
   let inputCode = document.getElementById("newCode");
   let inputName = document.getElementById("newName");
   let inputC_number = document.getElementById("newC_number");
-  let inputC_category = document.getElementById("newVoltage");
+  let inputC_category = document.getElementById("newC_category");
   let inputRoom = document.getElementById("newRoom").value;
   let inputC_date = document.getElementById("newC_date").value;
   let inputC_time = document.getElementById("newC_time").value;
@@ -267,8 +267,8 @@ const newItem = () => {
     --------------------------------------------------------------------------------------
 */
 
-const insertList = (code, name, c_number, voltage, room, c_date, c_time) => {
-  var item = [code, name, c_number, voltage, room, c_date, c_time]
+const insertList = (code, name, c_number, c_category, room, c_date, c_time) => {
+  var item = [code, name, c_number, c_category, room, c_date, c_time]
   var table = document.getElementById('myTableBody');
   var row = table.insertRow();
  
@@ -292,7 +292,7 @@ const insertList = (code, name, c_number, voltage, room, c_date, c_time) => {
 /*função para preencher a combobox */
 
 const listEspecialidades = () => {
-  document.getElementById("newRoomLabel").textContent="Especialidade:"
+  document.getElementById("newRoomLabel").textContent="Pediatra:"
   let url = 'http://127.0.0.1:5001/especialidades';
   fetch(url, {
     method: 'get',
@@ -355,7 +355,7 @@ document.getElementById("sheetjsexport").addEventListener('click', function() {
   /* Create worksheet from HTML DOM TABLE */
   var wb = XLSX.utils.table_to_book(document.getElementById("myTable"));
   /* Export to file (start a download) */
-  XLSX.writeFile(wb, "lista_aparelhos.xlsx");
+  XLSX.writeFile(wb, "Registro_Consultas.xlsx");
 });
 
 /* função relacionada aos eventos de abrir e fechar o modal */
