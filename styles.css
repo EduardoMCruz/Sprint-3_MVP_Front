@@ -1,3 +1,11 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
 body,
 ul,
 li {
@@ -5,41 +13,34 @@ li {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: rgba(145,224,255,255);
+    background-image: linear-gradient(to right, rgb(20, 147, 220), rgb(17, 54,71));
 }
 
 header {
-    background-color: rgba(145,224,255,255);
+    background-color: rgb(35, 32, 24);
     text-align: center;
     position: relative;
     width: 100%;
+    padding: 15px 0px;
 }
 
+
 .box {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px;
+    background-color: rgba(19, 7, 7, 0.7);
+    padding: 20px;
     margin: 30px;
 }
 
 .title {
-    color: rgb(72, 72, 72);
+    color: rgb(255, 252, 252);
     width: 100%;
-    background-color: rgba(145,224,255,255);
+    background-color: rgb(35, 32, 24);
     display: inline-block;
     padding: 2px 0px;
     position: sticky;
     top: 0px;
 }
 
-.banner {
-    height: 150px;
-    overflow: hidden;
-}
-
-.banner img {
-    margin: 0px 0px 0px 0px;
-    width: 100%;
-}
 
 .fields {
     color: white;
@@ -74,49 +75,20 @@ header {
     -webkit-text-fill-color: rgb(72, 72, 72);
     width: fit-content;
 }
-/*
-#newCode {
-    width: 11%;
-}
-
-#newName {
-    width: 17%;
-}
-
-#newPower {
-    width: 7%;
-}
-
-#newVoltage {
-    width: 10%;
-}
-
-#newRoom {
-    width: 13%;
-    -webkit-text-fill-color: rgb(72, 72, 72);
-}
-
-#newAmperage {
-    width: 8%;
-}
-
-#newDiameter {
-    width: 10%;
-}
-*/
 
 .addBtn {
     padding: 10px 10px;
-    background-color: rgb(18, 66, 86);
+    background-image: linear-gradient(to right, rgb(28, 128, 185), rgb(9, 154, 238));
     color: white;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
     border-radius: 2px;
-    margin-left: 1%;
-    margin-top: 10px;
+    margin-left: 40%;
+    margin-top: 1px;
     margin-bottom: 10px;
+     border-radius: 100px;
 }
 
 .addBtn:hover {
@@ -129,6 +101,7 @@ header {
     padding: 0;
     display: flex;
     justify-content: center;
+    
 }
 
 .fa-solid:hover {
@@ -159,6 +132,7 @@ header {
     flex-wrap: wrap; 
     margin-top: 0%;
     margin-right: 1%;
+   
 }
 
 .textLabel {
