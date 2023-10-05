@@ -19,21 +19,23 @@
     <!-- Cabeçalho de informações do sistema -->
     <header>
         <div class="title">
-            <h2>Home Consultas</h2>
-        </div>
-        
+            <h1>Home Consultas</h1>
+       
     </header>
-    <div class="box"> 
+
+    <div class="box1"> 
      <!-- Opções para adicionar um novo item -->
     <section class="newItem">
         <div class="exportar">
             <button onclick="openIncludeModal()" class="addBtn">
-                <i class="fa-solid fa-plus"></i> Adicionar Paciente
+                <i class="fa-solid fa-plus"></i> Agendar Consulta
             </button>
             <button id="sheetjsexport" class="addBtn">
                 <i class="fas fa-download"></i> Report Consultas
             </button>
         </div> 
+
+        <div class="box"> 
     </section>
     <!-- Tabela com items existentes -->
     <section class="items">
@@ -46,7 +48,7 @@
                     <th>Categoria</th>
                     <th>Especialidade</th>
                     <th>Data</th>
-                    <th>Hora</th>
+                    <th>hora</th>
                     <th> </th>
                     <th> </th>
                 </tr>
@@ -72,18 +74,18 @@
                     <input type="text" class="editField" id="editName" placeholder="Nome: *">
                     <div class="textLabel">*Telefone</div>
                     <input type="text" class="editField" id="editC_number" placeholder="Telefone">
-                    <div class="textLabel">*Categoria</div>
-                    <select class="editField" id="editC_category">
+                    <div class="textLabel">*Categoria </div>
+                    <select class="editField" id="editC_categoty">
                         <option value="" disabled selected hidden>Categoria</option>
                         <option value="1º Consulta" >1º Consulta</option>
                         <option value="Retorno">Retorno</option>
                     </select>
                     <div class="textLabel">Especialidade:</div>
                     <input type="text" class="editFieldBlocked" id="editRoom" placeholder="">
-                    <div class="textLabel">Data:</div>
+                    <div class="textLabel">Data da Consulta</div>
                     <input type="date" class="editField" id="editC_date" placeholder="dd/mm/aaaa">
-                    <div class="textLabel">Hora:</div>
-                    <input type="time" class="editField" id="editC_time" placeholder="MM:HH:">
+                    <div class="textLabel">Hora da Consulta</div>
+                    <input type="time" class="editField" id="editC_time" placeholder="--:--">
                 </div>
             </section>
             <div class="mandatoryText">
@@ -102,14 +104,14 @@
         <div class="modal-content">
         <span class="close" onclick="closeIncludeModal()">&times;</span>
         <!-- Conteúdo do modal (campos de edição, informações, etc.) -->
-        <h2>Adicionar Consulta</h2>
+        <h2>Adicionar Agendamento</h2>
         <section class="newItem">
             <div class="campos">
-                    <div class="textLabel">*Código:</div>
-                    <input type="text" class="newItemField" id="newCode" placeholder="Código: *">
-                    <div class="textLabel">*Nome:</div>
-                    <input type="text" class="newItemField" id="newName" placeholder="Nome: *">
-                    <div class="textLabel">*Telefone</div>
+                    <div class="textLabel">Código: *</div>
+                    <input type="text" class="newItemField" id="newCode" placeholder="Código:">
+                    <div class="textLabel">Nome: *</div>
+                    <input type="text" class="newItemField" id="newName" placeholder="Nome:">
+                    <div class="textLabel">Telefone</div>
                     <input type="text" class="newItemField" id="newC_number" placeholder="Telefone">
                     <div class="textLabel">*Categoria</div>
                     <select class="newItemField" id="newC_category">
@@ -121,10 +123,10 @@
                     <select class="newItemField" id="newRoom">
                         <option value="" disabled selected hidden id="newRoomLabel"></option>
                     </select>
-                    <div class="textLabel">Data:</div>
-                    <input type="date" class="newItemField" id="newC_date" placeholder="Data da Consulta:">
-                    <div class="textLabel">Hora:</div>
-                    <input type="time" class="newItemField" id="newC_time" placeholder="Hora da Consulta">                
+                    <div class="textLabel">Data da Consulta</div>
+                    <input type="date" class="newItemField" id="newC_date" placeholder="">
+                    <div class="textLabel">Hora da Consulta:</div>
+                    <input type="time" class="newItemField" id="newC_time" placeholder="">                
         </div>
         </section>
         <div class="mandatoryText">
